@@ -1,8 +1,4 @@
-import com.sun.jdi.AbsentInformationException;
-
-import java.rmi.server.ServerNotActiveException;
-
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Deque<T> {
     /* Project 1a, implementation of Deque*/
     public class Node {
         private T item;
@@ -39,6 +35,7 @@ public class LinkedListDeque<T> {
 
 
     /* Add item to the front of the list.*/
+    @Override
     public void addFirst(T item) {
         Node newFirst = new Node(item, sentinel, sentinel.next);
         sentinel.next.prev = newFirst;
@@ -46,21 +43,10 @@ public class LinkedListDeque<T> {
         size++;
     }
 
-    /* Add item to the end of the list.
-    This method is not good enough. Should not use any loop.
-     */
-    public void addLastLoopMethod (T item) {
 
-        Node p = sentinel;
-        while (p.next != sentinel){
-            p = p.next;
-        }
-        p.next = new Node(item, p, sentinel);
-        sentinel.prev = p.next;
 
-        size++;
-    }
 
+    @Override
     public void addLast (T item) {
         Node newLast = new Node(item, sentinel.prev, sentinel);
         sentinel.prev.next = newLast;
@@ -68,19 +54,14 @@ public class LinkedListDeque<T> {
         size++;
     }
 
-    public boolean isEmpty(){
-        if (size() == 0){
-            return true;
-        }
-        else
-            return false;
-    }
 
     /* Returns the size of the list. */
+    @Override
     public int size() {
         return size;
     }
 
+    @Override
     public void printDeque(){
         Node p = sentinel.next;
         while (p.next != sentinel){
@@ -90,6 +71,7 @@ public class LinkedListDeque<T> {
         System.out.println(p.item);
     }
 
+    @Override
     public T removeFirst(){
         if (isEmpty()){
             return null;
@@ -108,6 +90,7 @@ public class LinkedListDeque<T> {
     }
 
     /* Should not use loop*/
+    @Override
     public T removeLast(){
         if (isEmpty()){
             return null;
@@ -123,6 +106,7 @@ public class LinkedListDeque<T> {
 
     }
 
+    @Override
     public T get(int index){
         if (isEmpty() || index+1 > size){
             return null;
@@ -163,23 +147,6 @@ public class LinkedListDeque<T> {
         return temp.getRecursive(index-1);
     }
 
-
-
-    public static void main(String[] args) {
-        /* Creates a list of one integer, namely 10 */
-        LinkedListDeque<Double> D = new LinkedListDeque<>();
-        D.addFirst(1.0);
-        D.addLast(2.0);
-        D.addLast(3.0);
-        D.addLast(4.0);
-
-
-
-        System.out.println(D.getRecursive(1));
-
-
-
-    }
 
 
 

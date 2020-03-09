@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class ArrayDeque<Item>{
+public class ArrayDeque<Item> implements Deque<Item>{
     private Item[] items;
     private int size;
     private int nextFirst;
@@ -24,6 +24,7 @@ public class ArrayDeque<Item>{
 
 
 
+    @Override
     public void addFirst(Item x) {
         if (nextFirst < 0) {
             resize(items.length * 2);
@@ -39,6 +40,7 @@ public class ArrayDeque<Item>{
 
     /** Inserts X into the back of the list. */
 
+    @Override
     public void addLast(Item x) {
         if (nextLast == items.length) {
             resize(items.length * 2);
@@ -54,17 +56,20 @@ public class ArrayDeque<Item>{
 
 
     /** Gets the ith item in the list (0 is the front). */
+    @Override
     public Item get(int i) {
         return items[nextFirst+i+1];
     }
 
     /** Returns the number of items in the list. */
+    @Override
     public int size() {
         return size;
     }
 
     /** Deletes item from back of the list and
      * returns deleted item. */
+    @Override
     public Item removeLast() {
         Item x = get(size-1);
         items[nextLast-1] = null;
@@ -73,6 +78,7 @@ public class ArrayDeque<Item>{
         return x;
     }
 
+    @Override
     public Item removeFirst() {
         Item x = get(0);
         items[nextFirst+1] = null;
@@ -81,6 +87,7 @@ public class ArrayDeque<Item>{
         return x;
     }
 
+    @Override
     public void printDeque() {
         for (Item i:items){
             if (i != null)
@@ -88,15 +95,4 @@ public class ArrayDeque<Item>{
         }
     }
 
-    public static void main(String[] args) {
-        ArrayDeque<Double> D = new ArrayDeque<>();
-        D.addFirst(1.0);
-        D.addLast(2.0);
-        D.addLast(3.0);
-        D.addLast(4.0);
-        D.addLast(5.0);
-        D.addLast(6.0);
-
-        D.printDeque();
-    }
 }
