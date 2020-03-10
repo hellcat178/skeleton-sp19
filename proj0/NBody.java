@@ -2,15 +2,17 @@
 * @Author: hexia
 * @Date:   2020-01-17 17:23:30
 * @Last Modified by:   hexia
-* @Last Modified time: 2020-03-10 13:32:46
+* @Last Modified time: 2020-03-10 14:40:35
 */
 
 public class NBody  {
+
 	public static double readRadius(String filename){
+
 		In in = new In(filename);
 		int numberPlanets = in.readInt();
 		double radius = in.readDouble();
-
+		in.close();
 		return radius;
 
 	}
@@ -61,7 +63,7 @@ public class NBody  {
 		    /*simulation*/
 		    StdDraw.enableDoubleBuffering();
 		    
-		    for(double time = 0; time <= t; t += dt){
+		    for(double time = 0; time <= t; time += dt){
 
 		    	double[] xForces = new double[bodies.length];
 		    	double[] yForces = new double[bodies.length];
@@ -83,16 +85,10 @@ public class NBody  {
 		    	b.draw();
 		        }
 		        StdDraw.show();
-		        StdDraw.pause(10);  
-
-		    	
+		        StdDraw.pause(10);
 
 		    }
 
-
-
-
 		}
 
-	
 } 
