@@ -2,7 +2,7 @@
 * @Author: hexia
 * @Date:   2020-01-17 17:23:30
 * @Last Modified by:   hexia
-* @Last Modified time: 2020-01-21 14:35:40
+* @Last Modified time: 2020-03-10 11:02:26
 */
 
 public class NBody  {
@@ -15,14 +15,14 @@ public class NBody  {
 
 	}
 
-	public static Body[] readBodies(String filename){
+	public static Planet[] readPlanets(String filename){
 
 		In in = new In(filename);
 		int numberPlanets = in.readInt();
 		double radius = in.readDouble();
-	    Body[] bodies = new Body[numberPlanets];
+	    Plante[] bodies = new Planet[numberPlanets];
 		for(int i =0; i<numberPlanets ;i++){
-			bodies[i] = new Body(in.readDouble(),in.readDouble(),
+			bodies[i] = new Planet(in.readDouble(),in.readDouble(),
 				in.readDouble(),in.readDouble(),in.readDouble(),"images/"+in.readString());
 
 		}
@@ -37,7 +37,7 @@ public class NBody  {
 			double dt = Double.parseDouble(args[1]);
 		    String filename = args[2];
 		    double radius = readRadius(filename);
-		    Body[] bodies = readBodies(filename);
+		    Planet[] bodies = readPlanets(filename);
 
 
 		    
@@ -51,7 +51,7 @@ public class NBody  {
             /*Draw the background of the pic*/
             StdDraw.picture(0,0,"images/starfield.jpg");
 		    /*Draw the initial positions of planets*/
-		    for(Body b : bodies){
+		    for(Planet b : bodies){
 		    	b.draw();
 		    }
 
@@ -60,25 +60,25 @@ public class NBody  {
 		    /*simulation*/
 		    StdDraw.enableDoubleBuffering();
 		    
-		    for(double time = 0;time<=t;t+=dt){
+		    for(double time = 0; time <= t; t += dt){
 
 		    	double[] xForces = new double[bodies.length];
 		    	double[] yForces = new double[bodies.length];
 
-		    	for(int i=0;i<bodies.length;i++){
+		    	for(int i = 0; i < bodies.length; i++){
 		    		xForces[i] = bodies[i].calcNetForceExertedByX(bodies);
 		    		yForces[i] = bodies[i].calcNetForceExertedByY(bodies);
 		    		
 
 		    	}
 
-		    	for(int i=0;i<bodies.length;i++){
+		    	for(int i=0; i < bodies.length; i++){
 		    		bodies[i].update(dt,xForces[i],yForces[i]);
 		    	}
 
 		    	StdDraw.clear();
 		    	StdDraw.picture(0,0,"images/starfield.jpg");
-		    	for(Body b : bodies){
+		    	for(Planet b : bodies){
 		    	b.draw();
 		        }
 		        StdDraw.show();
