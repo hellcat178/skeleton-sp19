@@ -2,7 +2,7 @@
 * @Author: hexia
 * @Date:   2020-01-17 17:23:30
 * @Last Modified by:   hexia
-* @Last Modified time: 2020-03-10 13:23:32
+* @Last Modified time: 2020-03-10 13:32:46
 */
 
 public class NBody  {
@@ -26,6 +26,7 @@ public class NBody  {
 				in.readDouble(),in.readDouble(),in.readDouble(),"./images/"+in.readString());
 
 		}
+		in.close();
 		return bodies;
 
 	}
