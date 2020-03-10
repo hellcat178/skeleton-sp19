@@ -2,7 +2,7 @@
 * @Author: hexia
 * @Date:   2020-01-17 17:23:30
 * @Last Modified by:   hexia
-* @Last Modified time: 2020-01-21 14:15:05
+* @Last Modified time: 2020-01-21 14:35:40
 */
 
 public class NBody  {
@@ -39,6 +39,7 @@ public class NBody  {
 		    double radius = readRadius(filename);
 		    Body[] bodies = readBodies(filename);
 
+
 		    
             
 		    /** Sets up the universe so it matches the radius of the universe*/
@@ -53,6 +54,8 @@ public class NBody  {
 		    for(Body b : bodies){
 		    	b.draw();
 		    }
+
+		    //StdAudio.play("audio/2001.mid")
 
 		    /*simulation*/
 		    StdDraw.enableDoubleBuffering();
