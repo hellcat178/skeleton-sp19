@@ -59,6 +59,7 @@ public class ArrayDeque<T>{
 
     /** Returns the number of items in the list. */
     public int size() {
+
         return size;
     }
 
@@ -66,21 +67,51 @@ public class ArrayDeque<T>{
      * returns deleted item. */
     public T removeLast() {
 
+        if (isEmpty()){
+            return null;
+        }
+
         T x = get(size - 1);
         items[nextLast - 1] = null;
         size--;
         nextLast--;
+
+        if (items.length >= 16 && usageRatioLess25()){
+            sizeShrink();
+        }
+
         return x;
     }
 
     public T removeFirst() {
 
+        if (isEmpty()){
+            return null;
+        }
+
         T x = get(0);
         items[nextFirst + 1] = null;
         size--;
         nextFirst++;
+
+        if (items.length >= 16 && usageRatioLess25()){
+            sizeShrink();
+        }
+
         return x;
     }
+
+    /** helper function to shrink the size of deque*/
+    private boolean usageRatioLess25() {
+        return (size * 1.0) / items.length < 0.25;
+    }
+
+    private void sizeShrink() {
+        T[] a = (T[]) new Object[size+8];
+        System.arraycopy(items, nextFirst + 1, a, 4, size);
+        items = a;
+    }
+
 
     public void printDeque() {
 
