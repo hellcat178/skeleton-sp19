@@ -2,7 +2,7 @@
 * @Author: hexia
 * @Date:   2020-01-17 17:23:30
 * @Last Modified by:   hexia
-* @Last Modified time: 2020-03-10 14:46:56
+* @Last Modified time: 2020-03-10 16:17:10
 */
 
 public class NBody  {
@@ -89,6 +89,14 @@ public class NBody  {
 		        StdDraw.pause(10);
 
 		    }
+
+		    StdOut.printf("%d\n", planets.length);
+            StdOut.printf("%.2e\n", radius);
+            for (int i = 0; i < planets.length; i++) {
+            	StdOut.printf("%11.4e %11.4e %11.4e %11.4e %11.4e %12s\n",
+                planets[i].xxPos, planets[i].yyPos, planets[i].xxVel,
+                planets[i].yyVel, planets[i].mass, planets[i].imgFileName);   
+            }
 
 		}
 
