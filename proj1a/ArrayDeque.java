@@ -1,12 +1,12 @@
-public class ArrayDeque<Item>{
-    private Item[] items;
+public class ArrayDeque<T>{
+    private T[] items;
     private int size;
     private int nextFirst;
     private int nextLast;
 
     /** Creates an empty list. */
     public ArrayDeque() {
-        items = (Item[]) new Object[8];
+        items = (T[]) new Object[8];
         size = 0;
         nextFirst = 4;
         nextLast = 5;
@@ -15,14 +15,14 @@ public class ArrayDeque<Item>{
 
     /** Resize the underlying array to the target capacity. */
     private void resize(int capacity) {
-        Item[] a = (Item[]) new Object[capacity];
+        T[] a = (T[]) new Object[capacity];
         System.arraycopy(items, 0, a, 4, items.length);
         items = a;
     }
 
 
 
-    public void addFirst(Item x) {
+    public void addFirst(T x) {
         if (nextFirst < 0) {
             resize(items.length * 2);
             nextFirst += 4;
@@ -37,7 +37,7 @@ public class ArrayDeque<Item>{
 
     /** Inserts X into the back of the list. */
 
-    public void addLast(Item x) {
+    public void addLast(T x) {
         if (nextLast == items.length) {
             resize(items.length * 2);
             nextFirst += 4;
@@ -52,7 +52,8 @@ public class ArrayDeque<Item>{
 
 
     /** Gets the ith item in the list (0 is the front). */
-    public Item get(int i) {
+    public T get(int i) {
+
         return items[nextFirst+i+1];
     }
 
@@ -63,30 +64,34 @@ public class ArrayDeque<Item>{
 
     /** Deletes item from back of the list and
      * returns deleted item. */
-    public Item removeLast() {
-        Item x = get(size-1);
-        items[nextLast-1] = null;
+    public T removeLast() {
+
+        T x = get(size - 1);
+        items[nextLast - 1] = null;
         size--;
         nextLast--;
         return x;
     }
 
-    public Item removeFirst() {
-        Item x = get(0);
-        items[nextFirst+1] = null;
+    public T removeFirst() {
+
+        T x = get(0);
+        items[nextFirst + 1] = null;
         size--;
         nextFirst++;
         return x;
     }
 
     public void printDeque() {
-        for (Item i:items){
+
+        for (T i : items){
             if (i != null)
             System.out.println(i);
         }
     }
 
     public boolean isEmpty() {
+
         return size == 0;
     }
 

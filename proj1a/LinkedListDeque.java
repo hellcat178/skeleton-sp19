@@ -1,6 +1,8 @@
 public class LinkedListDeque<T> {
+
     /** Project 1a, implementation of Deque*/
-    public class Node {
+    private class Node {
+
         private T item;
         private Node prev;
         private Node next;
@@ -12,7 +14,8 @@ public class LinkedListDeque<T> {
 
         }
 
-        private void nodeRemove(){
+        private void nodeRemove() {
+
             this.prev = null;
             this.next = null;
         }
@@ -27,6 +30,7 @@ public class LinkedListDeque<T> {
 
     /** Creates an empty Deque. */
     public LinkedListDeque() {
+
         sentinel = new Node(null, null, null);
         sentinel.next = sentinel;
         sentinel.prev = sentinel;
@@ -73,10 +77,12 @@ public class LinkedListDeque<T> {
 
     /** Returns the size of the list. */
     public int size() {
+
         return size;
     }
 
     public void printDeque(){
+
         Node p = sentinel.next;
         while (p.next != sentinel){
             System.out.print(p.item + " ");
@@ -86,6 +92,7 @@ public class LinkedListDeque<T> {
     }
 
     public T removeFirst(){
+
         if (isEmpty()){
             return null;
         }
@@ -104,6 +111,7 @@ public class LinkedListDeque<T> {
 
     /* Should not use loop*/
     public T removeLast(){
+
         if (isEmpty()){
             return null;
         }
@@ -119,13 +127,14 @@ public class LinkedListDeque<T> {
     }
 
     public T get(int index){
-        if (isEmpty() || index+1 > size){
+
+        if (isEmpty() || index + 1 > size){
             return null;
         }
 
         Node p = sentinel.next;
         int i = 0;
-        while (i<index){
+        while (i < index){
             p = p.next;
             i++;
         }
@@ -144,12 +153,14 @@ public class LinkedListDeque<T> {
     */
 
     private LinkedListDeque(Node nextNode, LinkedListDeque list){
+
         sentinel = nextNode;
         size = list.size() - 1;
     }
 
 
     public T getRecursive(int index){
+
         if (isEmpty() || index+1 > size){
             return null;
         }
@@ -158,7 +169,7 @@ public class LinkedListDeque<T> {
             return sentinel.next.item;
         }
         LinkedListDeque<T> temp = new LinkedListDeque(this.sentinel.next,this);
-        return temp.getRecursive(index-1);
+        return temp.getRecursive(index - 1);
     }
 
 }
