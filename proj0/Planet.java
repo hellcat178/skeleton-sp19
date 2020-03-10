@@ -2,7 +2,7 @@
 * @Author: hexia
 * @Date:   2020-01-16 17:14:09
 * @Last Modified by:   hexia
-* @Last Modified time: 2020-03-10 00:18:39
+* @Last Modified time: 2020-03-10 00:24:23
 */
 /* This is a class simulation a body
 the utimate simulation is multibody motion in a plane*/
@@ -16,7 +16,7 @@ public class Planet {
 	public String imgFileName; //name
 	private static final double G = 6.67e-11;
 
-	public Body(double xP, double yP, double xV, double yV, double m, String img){
+	public Planet(double xP, double yP, double xV, double yV, double m, String img){
 		xxPos = xP;
 		yyPos = yP;
 		xxVel = xV;
@@ -25,7 +25,7 @@ public class Planet {
 		imgFileName = img;
 	}
 
-	public Body(Body b){
+	public Planet(Planet b){
 		xxPos = b.xxPos;
 		yyPos = b.yyPos;
 		xxVel = b.xxVel;
@@ -36,17 +36,17 @@ public class Planet {
 	}
 
 	/* take in a Body and calculate the distance between*/
-	public double calcDistance (Body b) {
+	public double calcDistance (Planet b) {
 		return Math.sqrt(Math.pow(xxPos-b.xxPos,2) + Math.pow(yyPos-b.yyPos,2));
 
 	}
 	
-	public double calcForceExertedBy (Body b) {
+	public double calcForceExertedBy (Planet b) {
 		double F = G*mass*b.mass/Math.pow(calcDistance(b),2);
         return F;
 	}
 
-	public double calcForceExertedByX (Body b) {
+	public double calcForceExertedByX (Planet b) {
 
 		double r = calcDistance(b);
 		double dx = b.xxPos - xxPos;
@@ -54,17 +54,17 @@ public class Planet {
 
 	}
 
-	public double calcForceExertedByY (Body b) {
+	public double calcForceExertedByY (Planet b) {
 		
 		double r = calcDistance(b);
 		double dy = b.yyPos - yyPos;
 		return calcForceExertedBy(b) * dy/r;
 	}
 
-	public double calcNetForceExertedByX (Body [] bodies) {
+	public double calcNetForceExertedByX (Planet [] bodies) {
         
         double netForce = 0;
-		for(Body b : bodies){
+		for(Planet b : bodies){
 
 			if (b.equals(this)){
 				continue;
@@ -77,10 +77,10 @@ public class Planet {
 
 	}
 
-	public double calcNetForceExertedByY (Body [] bodies) {
+	public double calcNetForceExertedByY (Planet [] bodies) {
 
 		double netForce = 0;
-		for(Body b : bodies){
+		for(Planet b : bodies){
 			if (b.equals(this)){
 				continue;
 			}
