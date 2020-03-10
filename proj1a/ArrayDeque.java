@@ -13,7 +13,7 @@ public class ArrayDeque<Item>{
     }
 
 
-    /** Resizes the underlying array to the target capacity. */
+    /** Resize the underlying array to the target capacity. */
     private void resize(int capacity) {
         Item[] a = (Item[]) new Object[capacity];
         System.arraycopy(items, 0, a, 4, items.length);
@@ -84,6 +84,10 @@ public class ArrayDeque<Item>{
             if (i != null)
             System.out.println(i);
         }
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
     }
 
     

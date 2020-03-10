@@ -1,31 +1,31 @@
 public class LinkedListDeque<T> {
-    /* Project 1a, implementation of Deque*/
+    /** Project 1a, implementation of Deque*/
     public class Node {
         private T item;
         private Node prev;
         private Node next;
 
-        public Node(T i, Node p, Node n) {
+        private Node(T i, Node p, Node n) {
                 this.item = i;
                 this.prev = p;
                 this.next = n;
 
         }
 
-        public void nodeRemove(){
+        private void nodeRemove(){
             this.prev = null;
             this.next = null;
         }
 
     }
 
-    /* The first item (if it exists) is at sentinel.next. */
+    /** The first item (if it exists) is at sentinel.next. */
     private Node sentinel;
     private int size;
 
 
 
-    /* Creates an empty Deque. */
+    /** Creates an empty Deque. */
     public LinkedListDeque() {
         sentinel = new Node(null, null, null);
         sentinel.next = sentinel;
@@ -34,7 +34,7 @@ public class LinkedListDeque<T> {
     }
 
 
-    /* Add item to the front of the list.*/
+    /** Add item to the front of the list.*/
     public void addFirst(T item) {
         Node newFirst = new Node(item, sentinel, sentinel.next);
         sentinel.next.prev = newFirst;
@@ -59,6 +59,7 @@ public class LinkedListDeque<T> {
     }
     */
 
+    /** Add item to the end of the list.*/
     public void addLast (T item) {
         Node newLast = new Node(item, sentinel.prev, sentinel);
         sentinel.prev.next = newLast;
@@ -67,14 +68,10 @@ public class LinkedListDeque<T> {
     }
 
     public boolean isEmpty(){
-        if (size() == 0){
-            return true;
-        }
-        else
-            return false;
+        return size() == 0;
     }
 
-    /* Returns the size of the list. */
+    /** Returns the size of the list. */
     public int size() {
         return size;
     }
@@ -93,8 +90,8 @@ public class LinkedListDeque<T> {
             return null;
         }
         Node tobeRemove = sentinel.next; //this is the fist node with item, need to be removed
+        //rebuild reference
 
-        //rebuild referrence
         sentinel.next = sentinel.next.next;
         sentinel.next.prev = sentinel;
         sentinel.next.next.prev = sentinel.next;
@@ -135,6 +132,7 @@ public class LinkedListDeque<T> {
         return p.item;
     }
 
+    /*
     public LinkedListDeque(LinkedListDeque other){
         sentinel = new Node(null, sentinel, sentinel);
         size = 0;
@@ -143,11 +141,13 @@ public class LinkedListDeque<T> {
             addLast((T) other.get(i));
         }
     }
+    */
 
-    public LinkedListDeque(Node nextNode, LinkedListDeque list){
+    private LinkedListDeque(Node nextNode, LinkedListDeque list){
         sentinel = nextNode;
         size = list.size() - 1;
     }
+
 
     public T getRecursive(int index){
         if (isEmpty() || index+1 > size){
