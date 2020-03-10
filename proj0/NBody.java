@@ -2,7 +2,7 @@
 * @Author: hexia
 * @Date:   2020-01-17 17:23:30
 * @Last Modified by:   hexia
-* @Last Modified time: 2020-03-10 11:08:23
+* @Last Modified time: 2020-03-10 13:23:32
 */
 
 public class NBody  {
@@ -21,9 +21,9 @@ public class NBody  {
 		int numberPlanets = in.readInt();
 		double radius = in.readDouble();
 	    Planet[] bodies = new Planet[numberPlanets];
-		for(int i =0; i<numberPlanets ;i++){
+		for(int i = 0; i < numberPlanets; i++){
 			bodies[i] = new Planet(in.readDouble(),in.readDouble(),
-				in.readDouble(),in.readDouble(),in.readDouble(),"images/"+in.readString());
+				in.readDouble(),in.readDouble(),in.readDouble(),"./images/"+in.readString());
 
 		}
 		return bodies;
