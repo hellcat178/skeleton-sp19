@@ -2,11 +2,11 @@
 * @Author: hexia
 * @Date:   2020-01-16 17:14:09
 * @Last Modified by:   hexia
-* @Last Modified time: 2020-01-21 14:07:08
+* @Last Modified time: 2020-03-10 00:18:39
 */
 /* This is a class simulation a body
 the utimate simulation is multibody motion in a plane*/
-public class Body {
+public class Planet {
 
 	public double xxPos; //current x position
 	public double yyPos; //current y postion
