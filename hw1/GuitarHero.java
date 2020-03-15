@@ -6,8 +6,8 @@ public class GuitarHero {
     public static void main(String[] args) {
         /* create two guitar strings, for concert q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' */
         GuitarString[] gs = new GuitarString[37];
-        for (int i = 0; i < 37; i++){
-            gs[i] = new GuitarString(440.0 * Math.pow(2.0, (i-24.0)/12.0));
+        for (int i = 0; i < 37; i++) {
+            gs[i] = new GuitarString(440.0 * Math.pow(2.0, (i - 24.0) / 12.0));
         }
         String keyboard = "q2we4r5ty7u8i9op-[=zxdcfvgbnjmk,.;/' ";
 
@@ -19,15 +19,14 @@ public class GuitarHero {
                 char key = StdDraw.nextKeyTyped();
                 try {
                     gs[keyboard.indexOf(key)].pluck();
-                }catch (ArrayIndexOutOfBoundsException e){
+                } catch (ArrayIndexOutOfBoundsException e) {
                     //e.printStackTrace();
-
                 }
             }
 
             /* compute the superposition of samples */
             double sample = 0.0;
-            for (int i = 0; i < 37; i++){
+            for (int i = 0; i < 37; i++) {
                 sample += gs[i].sample();
             }
 
