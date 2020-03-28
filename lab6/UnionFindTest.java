@@ -13,6 +13,8 @@ public class UnionFindTest {
         assertEquals(5, uf.sizeOf(2));
         assertEquals(5, uf.sizeOf(3));
         assertTrue(uf.connected(0,3));
+
+        //Test
     }
 
 
