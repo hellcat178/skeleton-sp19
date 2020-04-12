@@ -12,7 +12,7 @@ public class PercolationStats {
 
         for (int i = 0; i < T; i++) {
             Percolation percolationGrid = pf.make(N);
-            while(!percolationGrid.percolate()){
+            while(!percolationGrid.percolates()){
                 randomOpen(percolationGrid);
             }
             fraction[i] = percolationGrid.numberOfOpenSites()*1.0 / (N * N);
@@ -48,6 +48,6 @@ public class PercolationStats {
         return mean() + 1.96 * stddev()/Math.sqrt(fraction.length);
     }
 
-    
+
 
 }

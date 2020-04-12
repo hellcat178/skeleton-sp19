@@ -62,7 +62,7 @@ public class Percolation {
         return count;
     }
 
-    public boolean percolate(){
+    public boolean percolates(){
         return uf.connected(ceiling, ground);
     }
 
