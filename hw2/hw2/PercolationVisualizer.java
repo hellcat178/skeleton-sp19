@@ -22,7 +22,7 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdDraw;
 
 public class PercolationVisualizer {
-/*
+
     // delay in miliseconds (controls animation speed)
     private static final int DELAY = 100;
 
@@ -52,7 +52,7 @@ public class PercolationVisualizer {
         StdDraw.setFont(new Font("SansSerif", Font.PLAIN, 12));
         StdDraw.setPenColor(StdDraw.BLACK);
         StdDraw.text(.25 * N, -N * .025, perc.numberOfOpenSites() + " open sites");
-        if (perc.percolates()) {
+        if (perc.percolate()) {
             StdDraw.text(.75 * N, -N * .025, "percolates");
         } else {
             StdDraw.text(.75 * N, -N * .025, "does not percolate");
@@ -83,5 +83,5 @@ public class PercolationVisualizer {
     public static void main(String[] args) {
         String filename = args[0];
         simulateFromFile(filename);
-    }*/
+    }
 }
